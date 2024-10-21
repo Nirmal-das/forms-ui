@@ -1,0 +1,10 @@
+<button class="progress-btn" [class]="className || class" [type]="type"
+    [ngClass]="{'disabled-button': isDisabled, '':!isDisabled,'loading':isLoading, 'filled':varient === 'filled' , 'outlined':varient === 'outlined'}"
+    [disabled]="isDisabled || isLoading" (click)="!isDisabled && onClick()"
+    [matTooltip]="toolTip" [matTooltipPosition]="'above'"
+    >
+    {{isLoading ? (loadingBtnName ?? "Processing") : (btnName ?? "Yes, continue")}}
+    <mat-icon class="icon" [svgIcon]="svgIcon" *ngIf="svgIcon && !isLoading"></mat-icon>
+    <mat-spinner class="loader" *ngIf="isLoading" [diameter]="spinnerDiameter || 20"></mat-spinner>
+    <ng-content></ng-content>
+</button>

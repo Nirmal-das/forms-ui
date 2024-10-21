@@ -1,0 +1,47 @@
+<div class="holder">
+  <mat-card class="form-container">
+    <mat-card-title>Registration Form</mat-card-title>
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+      <mat-form-field class="full-width">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name" placeholder="Enter your name" />
+        <mat-error *ngIf="userForm.get('name')?.invalid">Name is required</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" placeholder="Enter your email" />
+        <mat-error *ngIf="userForm.get('email')?.invalid">Valid email is required</mat-error>
+      </mat-form-field>
+
+      <h3>Which Technologies You Know?</h3>
+      <mat-checkbox formControlName="mern">MERN</mat-checkbox>
+      <mat-checkbox formControlName="mean">MEAN</mat-checkbox>
+      <mat-checkbox formControlName="mevn">MEVN</mat-checkbox>
+
+      <mat-form-field class="full-width">
+        <mat-label>No. of years of experience</mat-label>
+        <mat-select formControlName="experience">
+          <mat-option value="fresher">Fresher</mat-option>
+          <mat-option value="1-2">1-2 years</mat-option>
+          <mat-option value="3-5">3-5 years</mat-option>
+          <mat-option value="6-10">6-10 years</mat-option>
+          <mat-option value="10+">10+ years</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Contact Number</mat-label>
+        <input matInput formControlName="contactNumber" placeholder="Enter your contact number">
+        <mat-error *ngIf="userForm.get('contactNumber')?.hasError('required')">Contact number is required</mat-error>
+        <mat-error *ngIf="userForm.get('contactNumber')?.hasError('pattern')">Invalid contact number format</mat-error>
+      </mat-form-field>
+      <div class="button-container">
+        <wm-progress-button varient="filled" btnName="Submit" [isLoading]="isSubmitLoading"
+          loadingBtnName="Delete Workspace" type="submit" [isDisabled]="userForm.invalid"></wm-progress-button>
+        <wm-progress-button varient="outlined" btnName="Reset" type="button"
+          (btnClick)="onReset()"></wm-progress-button>
+      </div>
+    </form>
+  </mat-card>
+</div>
